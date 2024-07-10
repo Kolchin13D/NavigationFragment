@@ -11,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Toast;
 
 /**
@@ -75,12 +76,18 @@ public class FirstFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+        EditText editText = view.findViewById(R.id.enterName);
+
         button = (Button) view.findViewById(R.id.button1);
+
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Toast.makeText(getContext(), "CLICK", Toast.LENGTH_SHORT).show();
-                Navigation.findNavController(v).navigate(FirstFragmentDirections.firstTOsecond());
+                Navigation.findNavController(v)
+                        .navigate(FirstFragmentDirections.firstTOsecond()
+                                .setName(editText.getText().toString()));
             }
         });
     }

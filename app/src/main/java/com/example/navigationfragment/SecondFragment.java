@@ -3,11 +3,17 @@ package com.example.navigationfragment;
 import android.net.Uri;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.Navigation;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 /**
@@ -67,8 +73,19 @@ public class SecondFragment extends Fragment {
         return inflater.inflate(R.layout.fragment_second, container, false);
     }
 
-    public interface OnFragmentInteractionListener{
+    public interface OnFragmentInteractionListener {
         void OnFragmentInteraction(Uri uri);
     }
 
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        SecondFragmentArgs secondFragmentArgs = SecondFragmentArgs.fromBundle(getArguments());
+        String username = secondFragmentArgs.getName();
+
+        TextView textView = view.findViewById(R.id.text2);
+        textView.setText("Welcome to second fragment, " + username + "!");
+
+    }
 }
